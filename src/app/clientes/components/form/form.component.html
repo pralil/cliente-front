@@ -1,0 +1,35 @@
+<div class="card bg-dark text-white">
+  <div class="card-header"></div>
+  <div class="card-body">
+    <form (ngSubmit)="create()">
+      <div class="form-group row mb-2">
+        <label for="nombre" class="col-form-label col-sm-2 ">Nombre</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="client.name" name="name">
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="client.lastName" name="lastName">
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label for="email" class="col-form-label col-sm-2">Email</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="client.email" name="email">
+        </div>
+      </div>
+
+      <div class="from-group row mb-2">
+        <div class="col-sm-6">
+          <button class="btn btn-primary" role="button">Crear</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</div>
