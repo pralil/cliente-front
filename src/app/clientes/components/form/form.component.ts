@@ -13,6 +13,7 @@ export class FormComponent implements OnInit{
 
   public client: Cliente = new Cliente();
   public titulo: string = 'Crear Cliente';
+  public error: any;
 
 
 
@@ -29,9 +30,9 @@ export class FormComponent implements OnInit{
     this.activatedRoute.params.subscribe(params => {
       let id = params['id'];
       if(id){
-        this.clienteService.getCliente(id).subscribe( (cliente) => this.client = cliente )
+        this.clienteService.getCliente(id)
+          .subscribe( (cliente) => this.client = cliente );
       }
-
     })
   }
 
@@ -41,8 +42,12 @@ export class FormComponent implements OnInit{
         cliente => {
           this.router.navigate(['/clientes']);
           swal.fire('Nuevo Cliente', `Cliente ${ cliente.name } creado con exito`, 'success')
-        }
-      )
+        }, err => {
+          if ( err.status === 400 ) {
+            this.error = err.error;
+          }
+        });
+
   }
 
 

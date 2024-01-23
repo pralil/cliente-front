@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, catchError, throwError } from 'rxjs';
+import { Observable, map, catchError, throwError, from } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Cliente } from '../cliente';
 import swal from 'sweetalert2';
@@ -27,14 +27,14 @@ export class ClienteService {
   }
 
   create(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>(this.serviceUrl, cliente, { headers: this.httpHeadres })
-    .pipe(
-      catchError( e => {
-        console.log(e.error);
-        swal.fire('Error, se debe completar con los datos correspondientes', e.error, 'error');
-        return throwError(e);
-      })
-    );
+    return this.http.post<Cliente>(this.serviceUrl, cliente, { headers: this.httpHeadres });
+    // .pipe(
+    //   catchError( e => {
+    //     let errores = Object.values(e.error);
+    //     swal.fire('Error, se debe completar con los datos correspondientes', 'error');
+    //     return throwError(e);
+    //   })
+    // );
   }
 
 
